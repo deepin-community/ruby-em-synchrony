@@ -1,0 +1,17 @@
+Decription: remove usage of client in AMQP, as it has disappeared since amqp 1.1.x
+Bug: https://github.com/igrigorik/em-synchrony/issues/178
+Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=818258
+Author: Cédric Boutillier <boutil@debian.org>
+Last-Update: 2016-07-06
+
+
+--- a/lib/em-synchrony/amqp.rb
++++ b/lib/em-synchrony/amqp.rb
+@@ -186,7 +186,6 @@
+           module_eval(code, __FILE__, line)
+         end
+       end
+-      ::AMQP.client = ::EM::Synchrony::AMQP::Session
+     end
+   end
+ end

@@ -1,0 +1,16 @@
+Description: Disable tests requiring mongodb service
+ Debian specific patch
+Author: Pirate Praveen <praveen@debian.org>
+Last-Updated: 2014-05-04
+
+--- a/spec/mongo_spec.rb
++++ b/spec/mongo_spec.rb
+@@ -3,7 +3,7 @@
+ require 'mongo'
+ 
+ describe Mongo::Connection do
+-  it 'connects to DB' do
++  xit 'connects to DB' do
+     EventMachine.synchrony do
+       conn = Mongo::Connection.new 'localhost', 27017, :connect => true
+       EM.stop

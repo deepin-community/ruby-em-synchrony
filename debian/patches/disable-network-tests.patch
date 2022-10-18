@@ -1,0 +1,16 @@
+Description: Disable tests requiring network connection
+ Debian specific patch
+Author: Pirate Praveen <praveen@debian.org>
+Last-Updated: 2014-05-04
+
+--- a/spec/tcpsocket_spec.rb
++++ b/spec/tcpsocket_spec.rb
+@@ -474,7 +474,7 @@ describe EventMachine::Synchrony::TCPSoc
+   end
+   
+   context 'when wrapped in a connection pool' do
+-    it 'accepts "send"' do
++    xit 'accepts "send"' do
+       EventMachine.synchrony do
+         @socket = EventMachine::Synchrony::ConnectionPool.new(size: 1) do
+           EventMachine::Synchrony::TCPSocket.new 'eventmachine.rubyforge.org', 80

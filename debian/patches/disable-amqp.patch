@@ -1,0 +1,79 @@
+Description: Disable tests requiring amqp service
+ Debian specific patch
+Author: Pirate Praveen <praveen@debian.org>
+Last-Update: 2016-07-06
+
+--- a/spec/amqp_spec.rb
++++ b/spec/amqp_spec.rb
+@@ -2,7 +2,7 @@
+ 
+ describe EM::Synchrony::AMQP do
+ 
+-  it "should yield until connection is ready" do
++  xit "should yield until connection is ready" do
+     EM.synchrony do
+       connection = EM::Synchrony::AMQP.connect
+       connection.connected?.should eq(true)
+@@ -10,7 +10,7 @@
+     end
+   end
+ 
+-  it "should yield until disconnection is complete" do
++  xit "should yield until disconnection is complete" do
+     EM.synchrony do
+       connection = EM::Synchrony::AMQP.connect
+       connection.disconnect
+@@ -19,7 +19,7 @@
+     end
+   end
+ 
+-  it "should yield until the channel is created" do
++  xit "should yield until the channel is created" do
+     EM.synchrony do
+       connection = EM::Synchrony::AMQP.connect
+       channel = EM::Synchrony::AMQP::Channel.new(connection)
+@@ -28,7 +28,7 @@
+     end
+   end
+ 
+-  it "should yield until the queue is created" do
++  xit "should yield until the queue is created" do
+     EM.synchrony do
+       connection = EM::Synchrony::AMQP.connect
+       channel = EM::Synchrony::AMQP::Channel.new(connection)
+@@ -37,7 +37,7 @@
+     end
+   end
+ 
+-  it "should yield when a queue is created from a channel" do
++  xit "should yield when a queue is created from a channel" do
+     EM.synchrony do
+       connection = EM::Synchrony::AMQP.connect
+       channel = EM::Synchrony::AMQP::Channel.new(connection)
+@@ -46,7 +46,7 @@
+     end
+   end
+ 
+-  it "should yield until the exchange is created" do
++  xit "should yield until the exchange is created" do
+     EM.synchrony do
+       connection = EM::Synchrony::AMQP.connect
+       channel = EM::Synchrony::AMQP::Channel.new(connection)
+@@ -65,7 +65,7 @@
+     end
+   end
+ 
+-  it "should publish and receive messages" do
++  xit "should publish and receive messages" do
+     nb_msg = 10
+     EM.synchrony do
+       connection = EM::Synchrony::AMQP.connect
+@@ -102,7 +102,7 @@
+     end
+   end
+ 
+-  it "should handle several consumers" do
++  xit "should handle several consumers" do
+     nb_msg = 10
+     EM.synchrony do
+       connection = EM::Synchrony::AMQP.connect

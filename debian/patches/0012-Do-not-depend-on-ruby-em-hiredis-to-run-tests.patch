@@ -1,0 +1,160 @@
+From: Lucas Kanashiro <lucas.kanashiro@canonical.com>
+Date: Fri, 27 Mar 2020 10:45:21 -0300
+Subject: Do not depend on ruby-em-hiredis to run tests
+
+ruby-em-hiredis will be removed from the archive and the tests cannot
+rely on it.
+---
+ spec/helper/all.rb   |   1 -
+ spec/hiredis_spec.rb | 132 +++++++++++++++++++++++++--------------------------
+ 2 files changed, 66 insertions(+), 67 deletions(-)
+
+diff --git a/spec/helper/all.rb b/spec/helper/all.rb
+index eeda463..f3efef7 100644
+--- a/spec/helper/all.rb
++++ b/spec/helper/all.rb
+@@ -4,7 +4,6 @@ require 'em-synchrony/em-remcached'
+ require 'em-synchrony/em-memcache'
+ require 'em-synchrony/em-mongo'
+ require 'em-synchrony/em-redis'
+-require 'em-synchrony/em-hiredis'
+ require 'em-synchrony/amqp'
+ 
+ require 'helper/tolerance_matcher'
+diff --git a/spec/hiredis_spec.rb b/spec/hiredis_spec.rb
+index 4188775..925b12e 100644
+--- a/spec/hiredis_spec.rb
++++ b/spec/hiredis_spec.rb
+@@ -1,66 +1,66 @@
+-require "spec/helper/all"
+-
+-describe EM::Hiredis do
+-
+-  xit "should connect on demand" do
+-    EventMachine.synchrony do
+-      connection = EM::Hiredis::Client.connect
+-      connection.should_not be_connected
+-
+-      connection.ping
+-      connection.should be_connected
+-
+-      EventMachine.stop
+-    end
+-  end
+-
+-  xit "should work with compact connect syntax" do
+-    EventMachine.synchrony do
+-      redis = EM::Hiredis.connect
+-
+-      redis.set('a', 'bar')
+-      redis.get('a').should == 'bar'
+-
+-      EM.stop
+-    end
+-  end
+-
+-  xit "should work with manual db select" do
+-    EventMachine.synchrony do
+-      redis = EM::Hiredis.connect 'redis://127.0.0.1:6379'
+-      redis.select(0)
+-
+-      redis.set('a', 'baz')
+-      redis.get('a').should == 'baz'
+-
+-      EM.stop
+-    end
+-  end
+-
+-  xit "should get/set records synchronously" do
+-    EventMachine.synchrony do
+-      redis = EM::Hiredis::Client.connect
+-
+-      redis.set('a', 'foo')
+-      redis.get('a').should == 'foo'
+-      redis.get('c').should == nil
+-
+-      EM.stop
+-    end
+-  end
+-
+-  xit "should incr/decr key synchronously" do
+-    EventMachine.synchrony do
+-      redis = EM::Hiredis::Client.connect
+-      redis.del('key')
+-
+-      redis.incr('key')
+-      redis.get('key').to_i.should == 1
+-
+-      redis.decr('key')
+-      redis.get('key').to_i.should == 0
+-
+-      EM.stop
+-    end
+-  end
+-end
++#require "spec/helper/all"
++#
++#describe EM::Hiredis do
++#
++#  xit "should connect on demand" do
++#    EventMachine.synchrony do
++#      connection = EM::Hiredis::Client.connect
++#      connection.should_not be_connected
++#
++#      connection.ping
++#      connection.should be_connected
++#
++#      EventMachine.stop
++#    end
++#  end
++#
++#  xit "should work with compact connect syntax" do
++#    EventMachine.synchrony do
++#      redis = EM::Hiredis.connect
++#
++#      redis.set('a', 'bar')
++#      redis.get('a').should == 'bar'
++#
++#      EM.stop
++#    end
++#  end
++#
++#  xit "should work with manual db select" do
++#    EventMachine.synchrony do
++#      redis = EM::Hiredis.connect 'redis://127.0.0.1:6379'
++#      redis.select(0)
++#
++#      redis.set('a', 'baz')
++#      redis.get('a').should == 'baz'
++#
++#      EM.stop
++#    end
++#  end
++#
++#  xit "should get/set records synchronously" do
++#    EventMachine.synchrony do
++#      redis = EM::Hiredis::Client.connect
++#
++#      redis.set('a', 'foo')
++#      redis.get('a').should == 'foo'
++#      redis.get('c').should == nil
++#
++#      EM.stop
++#    end
++#  end
++#
++#  xit "should incr/decr key synchronously" do
++#    EventMachine.synchrony do
++#      redis = EM::Hiredis::Client.connect
++#      redis.del('key')
++#
++#      redis.incr('key')
++#      redis.get('key').to_i.should == 1
++#
++#      redis.decr('key')
++#      redis.get('key').to_i.should == 0
++#
++#      EM.stop
++#    end
++#  end
++#end

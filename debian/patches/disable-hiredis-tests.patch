@@ -1,0 +1,52 @@
+Description: Disable tests requiring hiredis adapter
+ Debian specific patch
+Author: Pirate Praveen <praveen@debian.org>
+Last-Update: 2016-07-06
+
+--- a/spec/hiredis_spec.rb
++++ b/spec/hiredis_spec.rb
+@@ -2,7 +2,7 @@
+ 
+ describe EM::Hiredis do
+ 
+-  it "should connect on demand" do
++  xit "should connect on demand" do
+     EventMachine.synchrony do
+       connection = EM::Hiredis::Client.connect
+       connection.should_not be_connected
+@@ -14,7 +14,7 @@
+     end
+   end
+ 
+-  it "should work with compact connect syntax" do
++  xit "should work with compact connect syntax" do
+     EventMachine.synchrony do
+       redis = EM::Hiredis.connect
+ 
+@@ -25,7 +25,7 @@
+     end
+   end
+ 
+-  it "should work with manual db select" do
++  xit "should work with manual db select" do
+     EventMachine.synchrony do
+       redis = EM::Hiredis.connect 'redis://127.0.0.1:6379'
+       redis.select(0)
+@@ -37,7 +37,7 @@
+     end
+   end
+ 
+-  it "should get/set records synchronously" do
++  xit "should get/set records synchronously" do
+     EventMachine.synchrony do
+       redis = EM::Hiredis::Client.connect
+ 
+@@ -49,7 +49,7 @@
+     end
+   end
+ 
+-  it "should incr/decr key synchronously" do
++  xit "should incr/decr key synchronously" do
+     EventMachine.synchrony do
+       redis = EM::Hiredis::Client.connect
+       redis.del('key')

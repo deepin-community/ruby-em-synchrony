@@ -1,0 +1,47 @@
+Description: Remove relative requires from tests
+ Remove relative require is necessary for autopkgtest, because with this it
+ will fail.
+Author: Lucas Kanashiro <kanashiro.duarte@gmail.com>
+Last-Updated: 2016-03-01
+Forward: not-needed
+
+--- a/spec/helper/all.rb
++++ b/spec/helper/all.rb
+@@ -1,11 +1,11 @@
+ require 'spec/helper/core'
+-require 'lib/em-synchrony/mysql2'
+-require 'lib/em-synchrony/em-remcached'
+-require 'lib/em-synchrony/em-memcache'
+-require 'lib/em-synchrony/em-mongo'
+-require 'lib/em-synchrony/em-redis'
+-require 'lib/em-synchrony/em-hiredis'
+-require 'lib/em-synchrony/amqp'
++require 'em-synchrony/mysql2'
++require 'em-synchrony/em-remcached'
++require 'em-synchrony/em-memcache'
++require 'em-synchrony/em-mongo'
++require 'em-synchrony/em-redis'
++require 'em-synchrony/em-hiredis'
++require 'em-synchrony/amqp'
+ 
+ require 'helper/tolerance_matcher'
+ require 'helper/stub-http-server'
+--- a/spec/mongo_spec.rb
++++ b/spec/mongo_spec.rb
+@@ -1,5 +1,5 @@
+ require 'spec/helper/all'
+-require 'lib/em-synchrony/mongo'
++require 'em-synchrony/mongo'
+ require 'mongo'
+ 
+ describe Mongo::Connection do
+--- a/spec/helper/core.rb
++++ b/spec/helper/core.rb
+@@ -2,5 +2,5 @@ require 'rubygems'
+ require 'rspec'
+ require 'pp'
+ 
+-require 'lib/em-synchrony'
+-require 'lib/em-synchrony/em-http'
++require 'em-synchrony'
++require 'em-synchrony/em-http'

@@ -1,0 +1,16 @@
+Description: Disable tests that tries to auth to redis
+ Debian specific patch
+Author: Pirate Praveen <praveen@debian.org>
+Last-Update: 2016-07-06
+
+--- a/spec/redis_spec.rb
++++ b/spec/redis_spec.rb
+@@ -90,7 +90,7 @@
+     end
+   end
+ 
+-  it "should execute sync add and auth", ci_skip: true do
++  xit "should execute sync add and auth", ci_skip: true do
+     EventMachine.synchrony do
+       redis = EM::Protocols::Redis.connect
+       redis.auth('abc')

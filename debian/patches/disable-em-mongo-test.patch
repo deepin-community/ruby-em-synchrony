@@ -1,0 +1,124 @@
+Description: Disable tests requiring mongodb service
+ Debian specific patch
+Author: Pirate Praveen <praveen@debian.org>
+Last-Update: 2016-07-06
+
+--- a/spec/em-mongo_spec.rb
++++ b/spec/em-mongo_spec.rb
+@@ -1,7 +1,7 @@
+ require "spec/helper/all"
+ 
+ describe EM::Mongo do
+-  it "should yield until connection is ready" do
++  xit "should yield until connection is ready" do
+     EventMachine.synchrony do
+       connection = EM::Mongo::Connection.new
+       connection.connected?.should eq(true)
+@@ -14,7 +14,7 @@
+   end
+ 
+   describe 'Synchronously (find & first)' do
+-    it "should insert a record into db" do
++    xit "should insert a record into db" do
+       EventMachine.synchrony do
+         collection = EM::Mongo::Connection.new.db('db').collection('test')
+         collection.remove({}) # nuke all keys in collection
+@@ -30,7 +30,7 @@
+       end
+     end
+ 
+-    it "should insert a record into db and be able to find it" do
++    xit "should insert a record into db and be able to find it" do
+       EventMachine.synchrony do
+         collection = EM::Mongo::Connection.new.db('db').collection('test')
+         collection.remove({}) # nuke all keys in collection
+@@ -51,7 +51,7 @@
+       end
+     end
+ 
+-    it "should be able to order results" do
++    xit "should be able to order results" do
+       EventMachine.synchrony do
+         collection = EM::Mongo::Connection.new.db('db').collection('test')
+         collection.remove({}) # nuke all keys in collection
+@@ -81,7 +81,7 @@
+   #
+   if defined?(EM::Mongo::Cursor)
+     describe '*A*synchronously (afind & afirst) [Mongo > 0.3.6, using cursor]' do
+-      it "should insert a record into db" do
++      xit "should insert a record into db" do
+         EventMachine.synchrony do
+           collection = EM::Mongo::Connection.new.db('db').collection('test')
+           collection.remove({}) # nuke all keys in collection
+@@ -99,7 +99,7 @@
+         end
+       end
+ 
+-      it "should insert a record into db and be able to find it" do
++      xit "should insert a record into db and be able to find it" do
+         EventMachine.synchrony do
+           collection = EM::Mongo::Connection.new.db('db').collection('test')
+           collection.remove({}) # nuke all keys in collection
+@@ -121,7 +121,7 @@
+         end
+       end
+ 
+-      it "should be able to order results" do
++      xit "should be able to order results" do
+         EventMachine.synchrony do
+           collection = EM::Mongo::Connection.new.db('db').collection('test')
+           collection.remove({}) # nuke all keys in collection
+@@ -149,7 +149,7 @@
+ 
+   else
+     describe '*A*synchronously (afind & afirst) [Mongo <= 0.3.6, using blocks]' do
+-      it "should insert a record into db" do
++      xit "should insert a record into db" do
+         EventMachine.synchrony do
+           collection = EM::Mongo::Connection.new.db('db').collection('test')
+           collection.remove({}) # nuke all keys in collection
+@@ -166,7 +166,7 @@
+         end
+       end
+ 
+-      it "should insert a record into db and be able to find it" do
++      xit "should insert a record into db and be able to find it" do
+         EventMachine.synchrony do
+           collection = EM::Mongo::Connection.new.db('db').collection('test')
+           collection.remove({}) # nuke all keys in collection
+@@ -188,7 +188,7 @@
+         end
+       end
+ 
+-      it "should be able to order results" do
++      xit "should be able to order results" do
+         EventMachine.synchrony do
+           collection = EM::Mongo::Connection.new.db('db').collection('test')
+           collection.remove({}) # nuke all keys in collection
+@@ -216,7 +216,7 @@
+ 
+   end
+ 
+-  it "should update records in db" do
++  xit "should update records in db" do
+     EventMachine.synchrony do
+       collection = EM::Mongo::Connection.new.db('db').collection('test')
+       collection.remove({}) # nuke all keys in collection
+@@ -233,7 +233,7 @@
+ 
+   context "authentication" do
+     # these specs only get asserted if you run mongod with the --auth flag
+-    it "successfully authenticates", ci_skip: true do
++    xit "successfully authenticates", ci_skip: true do
+       # For this spec you will need to add this user to the database
+       #
+       # From the Mongo shell:
+@@ -246,7 +246,7 @@
+       end
+     end
+ 
+-    it "raises an AuthenticationError if it cannot authenticate" do
++    xit "raises an AuthenticationError if it cannot authenticate" do
+       EventMachine.synchrony do
+         database = EM::Mongo::Connection.new.db('db')
+         proc {

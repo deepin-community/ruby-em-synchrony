@@ -1,0 +1,55 @@
+Source: ruby-em-synchrony
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Jonas Genannt <jonas.genannt@capi2name.de>,
+           Pirate Praveen <praveen@debian.org>
+Build-Depends: debhelper (>= 12),
+               gem2deb,
+               memcached,
+               default-mysql-server | virtual-mysql-server,
+               procps,
+               redis-server,
+               ruby-activerecord,
+               ruby-amq-protocol,
+               ruby-amqp,
+               ruby-em-http-request (>= 1.1.2-2),
+               ruby-em-mongo,
+               ruby-em-redis,
+               ruby-eventmachine,
+               ruby-mongo,
+               ruby-mysql2,
+               ruby-remcached,
+               ruby-rspec
+Standards-Version: 4.5.0
+Vcs-Git: https://salsa.debian.org/ruby-team/ruby-em-synchrony.git
+Vcs-Browser: https://salsa.debian.org/ruby-team/ruby-em-synchrony
+Homepage: https://github.com/igrigorik/em-synchrony
+XS-Ruby-Versions: all
+Testsuite: autopkgtest-pkg-ruby
+
+Package: ruby-em-synchrony
+Architecture: all
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ruby-activerecord,
+         ruby-amq-protocol,
+         ruby-amqp,
+         ruby-em-http-request,
+         ruby-em-mongo,
+         ruby-eventmachine,
+         ruby-mongo,
+         ruby-mysql2,
+         ruby-remcached,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: fiber aware EventMachine libraries
+ Collection of convenience classes and primitives to help untangle evented
+ code, plus a number of patched EM clients to make them Fiber aware.
+ .
+  * Fiber aware ConnectionPool with sync/async query support
+  * Fiber aware Iterator to allow concurrency control & mixing of sync / async
+  * Fiber aware async inline support: turns any async function into sync
+  * Fiber aware Multi-request interface for any callback enabled clients
+  * Fiber aware TCPSocket replacement, powered by EventMachine
+  * Fiber aware Thread, Mutex, ConditionVariable clases
+  * Fiber aware sleep, defer, system

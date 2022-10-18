@@ -1,0 +1,78 @@
+ruby-em-synchrony (1.0.5-3.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Disable tests for now. The mysql tests don't work under fakeroot anymore
+    (Closes: #963319)
+
+ -- Ivo De Decker <ivodd@debian.org>  Mon, 22 Feb 2021 20:12:04 +0000
+
+ruby-em-synchrony (1.0.5-3) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Utkarsh Gupta ]
+  * Add salsa-ci.yml
+
+  [ Lucas Kanashiro ]
+  * Do not depend on ruby-em-hiredis, it will be removed from the archive
+  * Bump debhelper compatibility level to 12
+  * Update VCS urls to point to salsa
+  * d/control: use secure url in Homepage field
+  * Do not runtime depend on ruby interpreter
+  * Declare compliance with Debian Policy 4.5.0
+  * d/copyright: use secure urls in Format and Source fields
+  * d/watch: update to use gemwatch.debian.net
+  * Add patch to not depend on ruby-em-hiredis to run tests
+
+ -- Lucas Kanashiro <lucas.kanashiro@canonical.com>  Fri, 27 Mar 2020 10:56:07 -0300
+
+ruby-em-synchrony (1.0.5-2) unstable; urgency=medium
+
+  * Team upload.
+  * Switch to default-mysql-server for tests (Closes: #848288)
+
+ -- Christian Hofstaedtler <zeha@debian.org>  Mon, 19 Dec 2016 01:17:19 +0000
+
+ruby-em-synchrony (1.0.5-1) unstable; urgency=medium
+
+  * Team upload
+  * Imported Upstream version 1.0.5
+  * Remove version in the gem2deb build-dependency
+  * Use https:// in Vcs-* fields
+  * Add no-amqp-client.patch to remove reference to AMQP::Client, which
+    disappeared in  amqp >= 1.1 (Closes: #818258)
+  * Drop fix-tests-with-new-rspec-syntax.patch, not needed anymore
+  * Refresh patches
+  * Bump Standards-Version to 3.9.8 (no changes needed)
+  * Set Testsuite to autopkgtest-pkg-ruby
+
+ -- Cédric Boutillier <boutil@debian.org>  Wed, 06 Jul 2016 19:22:44 +0200
+
+ruby-em-synchrony (1.0.4-1) unstable; urgency=medium
+
+  * Team upload.
+  * Imported Upstream version 1.0.4
+  * Create patch to fix tests with ruby2.3 (Closes: #800029)
+  * Create patch to remove relative requires from tests
+  * Refresh existent patches
+  * Update disable-failing-activerecord-tests.patch, skip new activerecord test
+  * rename debian/start_services_and_auto_install.sh to
+    debian/start_services_and_run.sh and make it generic; adapt all in
+    debian/rules accordingly.
+  * Move logic for calling debian/start_services_and_run.sh for running the
+    tests inside debian/ruby-tests.rake
+  * debian/control: update Vcs ulr, silence lintian
+  * Declare compliance with Debian policy 3.9.7
+  * debian/copyright: add Upstream-Contact field and add some commas
+  * Update Debian packaging copyright
+  * Bump debhelper compatibility level to 9
+  * debian/control: wrap and sort
+
+ -- Lucas Kanashiro <kanashiro.duarte@gmail.com>  Wed, 02 Mar 2016 09:35:09 -0300
+
+ruby-em-synchrony (1.0.3-1) unstable; urgency=low
+
+  [ Jonas Genannt ]
+  * Initial release (Closes: #705578)
+
+ -- Pirate Praveen <praveen@debian.org>  Sun, 04 May 2014 14:48:43 +0530

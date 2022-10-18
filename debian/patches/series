@@ -1,0 +1,12 @@
+remove-relative-require-from-tests.patch
+disable-hiredis-tests.patch
+disable-amqp.patch
+disable-connection-pool-tests.patch
+disable-em-mongo-test.patch
+disable-mongo-tests.patch
+disable-synchrony-failing-test.patch
+disable-network-tests.patch
+disable-redis-auth.test
+disable-failing-activerecord-tests.patch
+no-amqp-client.patch
+0012-Do-not-depend-on-ruby-em-hiredis-to-run-tests.patch
